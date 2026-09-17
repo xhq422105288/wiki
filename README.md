@@ -11,24 +11,19 @@ npm install
 npm run docs:dev
 ```
 
-## 推送到 GitHub（本机没装 `gh`，用 git 命令）
-
-1. 在 GitHub 网页上新建空仓库 `wiki`（先不要勾选 README）。
-2. 在本目录执行：
+## 推送到 GitHub
 
 ```bash
-cd C:\data\git\github\wiki
-git init -b main
+Set-Location -LiteralPath "C:\data\git\github\wiki"
 git add .
-git commit -m "init: VitePress wiki"
-git remote add origin https://github.com/<你的用户名>/wiki.git
-git push -u origin main
+git commit -m "docs: 补充内容并修复 Pages 部署"
+git push origin main
 ```
 
 3. 打开仓库 Settings → Pages：
-   - Build and deployment → Source：`Deploy from a branch`
-   - Branch：`gh-pages` / `(root)`，Save。
-   - 等 1-2 分钟访问 `https://<你的用户名>.github.io/wiki/`。
+   - Build and deployment → Source：**`GitHub Actions`**（注意：不要选 `Deploy from a branch`，新工作流不再用 `gh-pages` 分支）。
+   - 切到 Actions 确认 `Deploy VitePress to GitHub Pages` 变绿。
+   - 等 1-2 分钟访问 `https://xhq422105288.github.io/wiki/`。
 
 > 想用 `https://<你的用户名>.github.io`（无后缀）访问：
 > 新建/改名为 `<你的用户名>.github.io` 的仓库，把 `docs/.vitepress/config.mts` 里 `base: '/wiki/'` 改为 `base: '/'` 后再 push。
